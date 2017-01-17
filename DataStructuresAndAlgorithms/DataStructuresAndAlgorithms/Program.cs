@@ -13,6 +13,8 @@ namespace DataStructuresAndAlgorithms
             MetalLinkedList<string> ll = new MetalLinkedList<string>();
             ll.AddToFront("test1");
             ll.AddToFront("test22");
+            ll.AddToFront("This is the front");
+            ll.AddToBack("This is the end");
             ll.PrintAll();
         }
     }

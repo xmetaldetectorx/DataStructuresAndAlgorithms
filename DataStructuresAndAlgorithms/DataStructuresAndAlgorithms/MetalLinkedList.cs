@@ -9,11 +9,13 @@ namespace DataStructuresAndAlgorithms
     public class MetalLinkedList<T>
     {
         Node<T> head;
+        Node<T> end;
         public MetalLinkedList()
         { }            
         public MetalLinkedList(T val)
         {
             head = new Node<T>(val);
+            end = head;
         }
 
         public void AddToFront(T val)
@@ -21,11 +23,25 @@ namespace DataStructuresAndAlgorithms
             if(head == null)
             {
                 head = new Node<T>(val);
+                end = head;
                 return;
             }
             Node<T> newNode = new Node<T>(val);
             newNode.next = head;
             head = newNode;   
+        }
+
+        public void AddToBack(T val)
+        {
+            if(head == null)
+            {
+                head = new Node<T>(val);
+                end = head;
+                return;
+            }
+            Node<T> newNode = new Node<T>(val);
+            end.next = newNode;
+            end = newNode;
         }
 
         public void PrintAll()
