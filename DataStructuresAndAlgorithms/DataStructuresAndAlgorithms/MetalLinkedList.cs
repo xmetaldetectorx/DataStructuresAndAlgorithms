@@ -53,6 +53,24 @@ namespace DataStructuresAndAlgorithms
                 curr = curr.next;
             } while (curr != null);
         }
+
+        public int Count()
+        {
+            int count = 0;
+            if (head == null)
+                return count;
+            else
+            {
+                
+                Node<T> cur = head;
+                while(cur != null)
+                {
+                    count++;
+                    cur = cur.next;
+                }
+                return count;
+            }
+        }
     }
 
     class Node<T>
