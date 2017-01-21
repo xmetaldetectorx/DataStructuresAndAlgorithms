@@ -52,6 +52,12 @@ namespace DataStructuresAndAlgorithms
                 WriteLine("13 not found..");
             }
             bst.displayTree();
+            if (bst.BFS(5))
+            {
+                WriteLine("5 found using BFS!");
+            }
+            else
+                WriteLine("not found!"); 
         }
     }
 }

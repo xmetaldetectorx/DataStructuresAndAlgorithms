@@ -42,5 +42,23 @@ namespace DataStructuresAndAlgorithms
             head = head.next;
             return toDequeue.data;
         }
+
+        public int Count()
+        {
+            int count = 0;
+            if (head == null)
+                return count;
+            else
+            {
+
+                Node<T> cur = head;
+                while (cur != null)
+                {
+                    count++;
+                    cur = cur.next;
+                }
+                return count;
+            }
+        }
     }
 }

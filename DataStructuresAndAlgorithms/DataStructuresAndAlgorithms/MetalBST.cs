@@ -130,6 +130,43 @@ namespace DataStructuresAndAlgorithms
             return true;
         }
 
+        public bool DFS(int val)
+        {
+            MetalStack<Node<int>> ms = new MetalStack<Node<int>>();
+            Node<int> curr;
+            ms.Push(Root);
+            while(ms.Count() !=0)
+            {
+                curr = ms.Pop();
+                if (curr.data == val)
+                    return true;
+                else
+                { 
+                    if (curr.right!=null)ms.Push(curr.right);
+                    if (curr.left != null) ms.Push(curr.left);
+                }
+            }
+            return false;
+        }
+
+        public bool BFS(int val)
+        {
+            MetalQueue<Node<int>> q = new MetalQueue<Node<int>>();
+            q.Enqueue(root);
+            while (q.Count() > 0)
+            {
+                Node<int> current = q.Dequeue();
+                if (current == null)
+                    continue;
+                q.Enqueue(current.left);
+                q.Enqueue(current.right);
+
+                if (current.data == val)
+                    return true;
+            }
+            return false;
+        }
+
         public void displayTree()
         {
             MetalStack<Node<int>> globalStack = new MetalStack<Node<int>>();
