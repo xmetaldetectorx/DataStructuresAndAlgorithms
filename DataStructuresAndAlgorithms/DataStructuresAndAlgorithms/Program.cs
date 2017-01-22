@@ -43,21 +43,12 @@ namespace DataStructuresAndAlgorithms
             WriteLine("\n\rPost Order Traversal: ");
             bst.PrintPostOrder(bst.Root);
 
-            if(bst.Find(bst.Root, 13))
-            {
-                WriteLine("15 found!");
-            }
-            else
-            {
-                WriteLine("13 not found..");
-            }
             bst.displayTree();
-            if (bst.BFS(5))
-            {
-                WriteLine("5 found using BFS!");
-            }
-            else
-                WriteLine("not found!"); 
+            WriteLine("The height of the tree is: " + bst.treeHeight(bst.Root));
+
+            bst.Root = bst.rotateRight();
+            bst.displayTree();
+            WriteLine("The height of the tree is: " + bst.treeHeight(bst.Root));
         }
     }
 }

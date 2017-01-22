@@ -209,5 +209,19 @@ namespace DataStructuresAndAlgorithms
             Console.WriteLine("****......................................................****");
         }
 
+        public int treeHeight(Node<int> n)
+        {
+            if (n == null) return 0;
+            return 1 + Math.Max(treeHeight(n.left), treeHeight(n.right));
+        }
+
+        public Node<int> rotateRight()
+        {
+            Node<int> newRoot = Root.left;
+            Root.left = newRoot.right;
+            newRoot.right = Root;
+            return newRoot;
+        }
+
     }
 }
