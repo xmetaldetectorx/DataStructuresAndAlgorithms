@@ -13,8 +13,11 @@ namespace DataStructuresAndAlgorithms
         {
             if(start < end)
             {
+                //get pivot location from partitioned array
                 int pIndex = MetalPartition(array, start, end);
+                //quicksort left of pivot
                 MetalQuickSort(array, start, pIndex - 1);
+                //quicksort right of pivot
                 MetalQuickSort(array, pIndex + 1, end);
             }
         }
@@ -46,10 +49,12 @@ namespace DataStructuresAndAlgorithms
         {
             if (arrayLength < 2)
                 return;
+            //find midpoint and split array into two 
             int midPoint = arrayLength / 2;
             int[] left = new int[midPoint];
             int[] right = new int[arrayLength - midPoint];
 
+            //copy elements 
             for(int i = 0; i <= midPoint-1; i++)
             {
                 left[i] = array[i];
@@ -58,8 +63,12 @@ namespace DataStructuresAndAlgorithms
             {
                 right[i - midPoint] = array[i];
             }
+
+            //Call mergesort on left array
             MetalMergeSort(left, left.Length);
+            //Call mergesort on right array
             MetalMergeSort(right, right.Length);
+            //Merges left and right arrays by comparing each element
             Merge(left, right, array);
         }
 
@@ -68,6 +77,7 @@ namespace DataStructuresAndAlgorithms
             int lIndex =0,
                 rIndex =0,
                 aIndex = 0;
+            //Start copying elements of each array by comparing
             while (lIndex < left.Length && rIndex < right.Length)
             {
                 if(left[lIndex] <= right[rIndex])
@@ -82,12 +92,14 @@ namespace DataStructuresAndAlgorithms
                 }
                 aIndex++;
             }
+            //copy leftover left
             while(lIndex < left.Length)
             {
                 array[aIndex] = left[lIndex];
                 lIndex++;
                 aIndex++;
             }
+            //copy leftover right
             while(rIndex < right.Length)
             {
                 array[aIndex] = right[rIndex];
