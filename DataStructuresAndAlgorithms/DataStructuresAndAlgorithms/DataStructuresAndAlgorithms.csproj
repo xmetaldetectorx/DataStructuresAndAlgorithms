@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MetalBinarySearch.cs" />
     <Compile Include="MetalBST.cs" />
     <Compile Include="MetalLinkedList.cs" />
     <Compile Include="MetalQueue.cs" />

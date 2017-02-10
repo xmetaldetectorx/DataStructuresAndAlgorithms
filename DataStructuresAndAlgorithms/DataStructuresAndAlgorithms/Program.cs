@@ -11,6 +11,12 @@ namespace DataStructuresAndAlgorithms
     {
         static void Main(string[] args)
         {
+            int[] sortedArray = { 1, 2, 4, 6, 7, 9, 10, 44, 56, 78 };
+            WriteLine("Does the array have 6 ?");
+            int result = MetalBinarySearch.MetalBS(sortedArray, 0, sortedArray.Length-1, 6);
+            if (result != -1)
+                WriteLine("Yes it does and it's at " + result);
+
             //MetalLinkedList<int> mll = new MetalLinkedList<int>();
             //WriteLine("Beginning LinkedList Test..");
             //mll.AddToBack(1);
@@ -22,15 +28,14 @@ namespace DataStructuresAndAlgorithms
             //mll.PrintAll();
             //WriteLine("The 0th to last is " + mll.NthToLast(0));
 
-            int[] numbers = { 3, 8, 7, 5, 2, 1, 8, 6, 4 };
-            int len = 9;
+            //int[] numbers = { 3, 8, 7, 5, 2, 1, 8, 6, 4 };
+            //int len = 9;
 
-            Console.WriteLine("MergeSort By Recursive Method");
-            //QuickSort_Recursive(numbers, 0, len - 1);
-            //MetalSorts.MetalQuickSort(numbers, 0, len - 1);
-            MetalSorts.MetalMergeSort(numbers, numbers.Length);
-            for (int i = 0; i < 9; i++)
-                Console.WriteLine(numbers[i]);
+            //Console.WriteLine("MergeSort By Recursive Method");
+            ////MetalSorts.MetalQuickSort(numbers, 0, len - 1);
+            //MetalSorts.MetalMergeSort(numbers, numbers.Length);
+            //for (int i = 0; i < 9; i++)
+            //    Console.WriteLine(numbers[i]);
 
 
             //MetalStack<string> ms = new MetalStack<string>();
@@ -72,14 +77,5 @@ namespace DataStructuresAndAlgorithms
             //bst.displayTree();
             //WriteLine("The height of the tree is: " + bst.treeHeight(bst.Root));
         }
-
-        static void MergeSort()
-        {
-
-        }
-
-        
-
-        
     }
 }
