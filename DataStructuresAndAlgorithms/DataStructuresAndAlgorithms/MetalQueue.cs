@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataStructuresAndAlgorithms
 {
-    public class MetalQueue<T>
+    public class MetalQueue<T> 
     {
         Node<T> head;
         Node<T> end;

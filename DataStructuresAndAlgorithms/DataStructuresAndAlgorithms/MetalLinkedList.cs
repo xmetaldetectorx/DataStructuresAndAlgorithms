@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataStructuresAndAlgorithms
 {
-    public class MetalLinkedList<T>
+    public class MetalLinkedList<T> 
     {
         Node<T> head;
         Node<T> end;
@@ -70,6 +70,48 @@ namespace DataStructuresAndAlgorithms
                 }
                 return count;
             }
+        }
+
+        public bool Delete(T val)
+        {
+            Node<T> curr = head;
+            //if(head.data == val)
+            //{
+            //    head = head.next;
+            //    return true;
+            //}
+            return false;
+        }
+
+        public bool InsertAfter(T val)
+        {
+            return false;
+        }
+
+        public T NthToLast(int n)
+        {
+            if (n == 0)
+            {
+                return end.data;
+            }
+            Node<T> curPos = head;
+            Node<T> nth = null;
+            for (int i =0; i < n; i++)
+            {
+                if (curPos.next!=null)
+                    curPos = curPos.next;
+                else
+                    return default(T);
+            }
+
+            nth = head;
+            while(curPos.next!=null)
+            {
+                curPos = curPos.next;
+                nth = nth.next;
+            }
+            
+            return nth.data;
         }
     }
 

@@ -46,6 +46,7 @@
     <Compile Include="MetalBST.cs" />
     <Compile Include="MetalLinkedList.cs" />
     <Compile Include="MetalQueue.cs" />
+    <Compile Include="MetalSorts.cs" />
     <Compile Include="MetalStack.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Program.cs" />
