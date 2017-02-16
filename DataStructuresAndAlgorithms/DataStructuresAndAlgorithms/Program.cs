@@ -11,11 +11,12 @@ namespace DataStructuresAndAlgorithms
     {
         static void Main(string[] args)
         {
-            int[] sortedArray = { 1, 2, 4, 6, 7, 9, 10, 44, 56, 78 };
-            WriteLine("Does the array have 6 ?");
-            int result = MetalBinarySearch.MetalBS(sortedArray, 0, sortedArray.Length-1, 6);
-            if (result != -1)
-                WriteLine("Yes it does and it's at " + result);
+            WriteLine(FullURL("http:/asfdsdf.COM"));
+            //int[] sortedArray = { 1, 2, 4, 6, 7, 9, 10, 44, 56, 78 };
+            //WriteLine("Does the array have 6 ?");
+            //int result = MetalBinarySearch.MetalBS(sortedArray, 0, sortedArray.Length-1, 6);
+            //if (result != -1)
+            //    WriteLine("Yes it does and it's at " + result);
 
             //MetalLinkedList<int> mll = new MetalLinkedList<int>();
             //WriteLine("Beginning LinkedList Test..");
@@ -76,6 +77,41 @@ namespace DataStructuresAndAlgorithms
             //bst.Root = bst.rotateRight();
             //bst.displayTree();
             //WriteLine("The height of the tree is: " + bst.treeHeight(bst.Root));
+        }
+
+
+        static string FullURL(string input)
+        {
+            StringBuilder sb = new StringBuilder();
+            input = input.Trim().ToLower();
+            if(input.Length > 0)
+            {
+                if (!input.StartsWith("http://"))
+                    sb.Append("http://");
+                sb.Append(input);
+                if (!input.EndsWith(".com"))
+                    sb.Append(".com");
+            }
+            return sb.ToString();
+        }
+
+        static int CountWords(string text)
+        {
+            int wordCount = 0, index = 0;
+            text = text.Trim();
+            while (index < text.Length)
+            {
+                // check if current char is part of a word
+                while (index < text.Length && !char.IsWhiteSpace(text[index]))
+                    index++;
+
+                wordCount++;
+
+                // skip whitespace until next word
+                while (index < text.Length && char.IsWhiteSpace(text[index]))
+                    index++;
+            }
+            return wordCount;
         }
     }
 }
