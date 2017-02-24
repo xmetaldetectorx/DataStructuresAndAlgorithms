@@ -11,74 +11,159 @@ namespace DataStructuresAndAlgorithms
     {
         static void Main(string[] args)
         {
-            WriteLine(FullURL("http:/asfdsdf.COM"));
-            //int[] sortedArray = { 1, 2, 4, 6, 7, 9, 10, 44, 56, 78 };
-            //WriteLine("Does the array have 6 ?");
-            //int result = MetalBinarySearch.MetalBS(sortedArray, 0, sortedArray.Length-1, 6);
-            //if (result != -1)
-            //    WriteLine("Yes it does and it's at " + result);
+            Console.WriteLine(IsPalindrome("amor, &^%*&^%(roma"));
+            
+            //string[][] pairs =
+            //{
+            //    new string[]{"apple", "papel"},
+            //    new string[]{"carrot", "tarroc"},
+            //    new string[]{"hello", "llloh"}
+            //};
 
-            //MetalLinkedList<int> mll = new MetalLinkedList<int>();
-            //WriteLine("Beginning LinkedList Test..");
-            //mll.AddToBack(1);
-            //mll.AddToBack(2);
-            //mll.AddToBack(3);
-            //mll.AddToBack(4);
-            //mll.AddToBack(5);
-            //mll.AddToBack(6);
-            //mll.PrintAll();
-            //WriteLine("The 0th to last is " + mll.NthToLast(0));
+            //foreach (var pair in pairs)
+            //{
+            //    var word1 = pair[0];
+            //    var word2 = pair[1];
+            //    var result1 = IsPermutation(word1, word2);
+            //    var result2 = IsPermutation(word1, word2);
+            //    Console.WriteLine("{0}, {1}: {2} / {3}", word1, word2, result1, result2);
+            //}
 
-            //int[] numbers = { 3, 8, 7, 5, 2, 1, 8, 6, 4 };
-            //int len = 9;
+            //int[] values = new int[] { 5,6,3,1,2,4};
+            //int node1 = 2, node2 = 4;
+            //int n = 6;
+            //BST myBST = new BST();
+            //Node n1, n2;
+            //n1 = n2 = null;
+            //for (int i = 0; i < n; i++)
+            //{
+            //    myBST.Add(myBST.root, values[i]);
+            //    if (values[i] == node1)
+            //        n1 = new Node(node1);
+            //    if (values[i] == node2)
+            //        n2 = new Node(node2);
+            //}
+            //Node LCA = myBST.FindLCA(myBST.root, node1, node2);
+            //Console.Write("The LCA of node1 and node2 is " + LCA.data);
+        }
+        public static bool OneEditReplace(String s1, String s2)
+        {
+            bool foundDifference = false;
+            for (int i = 0; i < s1.Length; i++)
+            {
+                if (s1[i] != s2[i])
+                {
+                    if (foundDifference)
+                    {
+                        return false;
+                    }
 
-            //Console.WriteLine("MergeSort By Recursive Method");
-            ////MetalSorts.MetalQuickSort(numbers, 0, len - 1);
-            //MetalSorts.MetalMergeSort(numbers, numbers.Length);
-            //for (int i = 0; i < 9; i++)
-            //    Console.WriteLine(numbers[i]);
-
-
-            //MetalStack<string> ms = new MetalStack<string>();
-            //WriteLine("Beginning Stack Test..");
-            //ms.Push("Plate 1");
-            //ms.Push("Plate 2");
-            //ms.Push("Plate 3");
-            //WriteLine("First Pop: " + ms.Pop());
-            //WriteLine("Second Pop: " + ms.Pop());
-            //WriteLine("Third Pop: " + ms.Pop());
-
-            //WriteLine(Environment.NewLine+"Beginning a Queue Test..");
-            //MetalQueue<string> mq = new MetalQueue<string>();
-            //mq.Enqueue("First guy in line");
-            //mq.Enqueue("Second guy in line");
-            //mq.Enqueue("Third guy in line");
-            //WriteLine("First Dequeue: " + mq.Dequeue());
-            //WriteLine("Second Dequeue: " + mq.Dequeue());
-            //WriteLine("Third Dequeue: " + mq.Dequeue());
-
-            //WriteLine("Starting BST Test...");
-            //MetalBST bst = new MetalBST(10);
-            //bst.Add(5);
-            //bst.Add(11);
-            //bst.Add(15);
-            //bst.Add(7);
-
-            //WriteLine("In Order Traversal: ");
-            //bst.PrintInOrder(bst.Root);
-            //WriteLine("\n\rPre Order Traversal: ");
-            //bst.PrintPreOrder(bst.Root);
-            //WriteLine("\n\rPost Order Traversal: ");
-            //bst.PrintPostOrder(bst.Root);
-
-            //bst.displayTree();
-            //WriteLine("The height of the tree is: " + bst.treeHeight(bst.Root));
-
-            //bst.Root = bst.rotateRight();
-            //bst.displayTree();
-            //WriteLine("The height of the tree is: " + bst.treeHeight(bst.Root));
+                    foundDifference = true;
+                }
+            }
+            return true;
         }
 
+        public static bool IsPalindrome(string str)
+        {
+            if (str.Length <= 0)
+                return false;
+            string input = str.ToLower();
+            int start = 0;
+            int end = input.Length-1;
+
+            while(start <= end)
+            {
+                if(!('a'<= input[start] && input[start] <= 'z'))
+                {
+                    start++;
+                }
+                else if(!('a' <= input[end] && input[end] <= 'z'))
+                {
+                    end--;
+                }
+                else
+                {
+                    if (input[start] != input[end])
+                        return false;
+                    start++;
+                    end--;
+                }
+            }
+
+            return true;
+        }
+
+        public static int bstDistance(int[] values, int n, int node1, int node2)
+        {
+            // WRITE YOUR CODE HERE
+            BST myBST = new BST();
+            //Node n1, n2;
+            //n1 = n2 = null;
+            for (int i = 0; i < n; i++)
+            {
+                myBST.Add(myBST.root, values[i]);
+                //if (values[i] == node1)
+                //    n1 = new Node(node1);
+                //if (values[i] == node2)
+                //    n2 = new Node(node2);
+            }
+            //find lowest common ancestor of nodes
+            //if (n1 != null && n2 != null)
+            //{
+                Node LCA = myBST.FindLCA(myBST.root, node1, node2);
+                Console.Write("The LCA of node1 and node2 is " + LCA.data);
+                return LCA.data;
+            //}
+            return 0;
+        }
+
+        static int totalScore(string[] blocks, int n)
+        {
+            if (n == 0 || blocks.Length == 0)
+                return 0;
+            int finalScore = 0;
+            int lastScore = 0;
+            int secondToLastScore = 0;
+            int curScore;
+            for(int i=0; i<n; i++)
+            {
+                if(int.TryParse(blocks[i], out curScore))
+                {
+                    //current block is a number
+                    finalScore += curScore;
+                    if (i >= 1)
+                        secondToLastScore = lastScore;
+                    lastScore = curScore;
+                    
+                }
+                else
+                {
+                    switch(blocks[i])
+                    {
+                        case "X":
+                            curScore = lastScore * 2;
+                            finalScore += curScore;
+                            if (i >= 1)
+                                secondToLastScore = lastScore;
+                            lastScore = curScore;
+                            break;
+                        case "+":
+                            curScore = lastScore + secondToLastScore;
+                            finalScore += curScore;
+                            if (i >= 1)
+                                secondToLastScore = lastScore;
+                            lastScore = curScore;
+                            break;
+                        case "Z":
+                            finalScore -= lastScore;
+                            lastScore = secondToLastScore;
+                            break;
+                    }
+                }
+            }
+            return finalScore;
+        }
 
         static string FullURL(string input)
         {
@@ -113,5 +198,83 @@ namespace DataStructuresAndAlgorithms
             }
             return wordCount;
         }
+
+        static public bool IsPermutation(String str1, String str2)
+        {
+            if (str1 == null || str2 == null) return false;
+            if (str1.Length != str2.Length) return false;
+
+            int result = 0;
+
+            for (int i = 0; i < str1.Length; i++)
+            {
+                int str1Val = (int)str1.ToCharArray()[i];
+                int str2Val = (int)str2.ToCharArray()[i];
+
+                result = result ^ str1Val;
+                result = result ^ str2Val;
+            }
+
+            return result == 0;
+        } // end permutation
     }
+
+    class Node
+    {
+        public int data;
+        public Node left;
+        public Node right;
+
+        public Node(int data)
+        {
+            this.data = data;
+            this.left = null;
+            this.right = null;
+        }
+    }
+
+    class BST
+    {
+        public Node root;
+
+        public BST()
+        {
+            root = null;
+        }
+
+        public void Add(Node node, int val)
+        {
+            if (root == null)
+                root = new Node(val);
+            else if (node == null)
+                node = new Node(val);
+            else if (val >= node.data && node.right == null)
+                node.right = new Node(val);
+            else if (val <= node.data && node.left == null)
+                node.left = new Node(val);
+            else if (val >= node.data)
+                Add(node.right, val);
+            else if (val <= node.data)
+                Add(node.left, val);
+        }
+
+        public Node FindLCA(Node root, int n1, int n2)
+        {
+            if (root == null)
+                return null;
+            if (root.data == n1 || root.data == n2)
+                return root;
+            Node left = FindLCA(root.left, n1, n2);
+            Node right = FindLCA(root.right, n1, n2);
+            if (left != null && right != null)
+                return root;
+            if (left == null && right == null)
+                return null;
+
+            return left != null ? left : right;
+        }
+
+
+    }
+
 }
