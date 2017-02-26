@@ -11,7 +11,8 @@ namespace DataStructuresAndAlgorithms
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(IsPalindrome("amor, &^%*&^%(roma"));
+            int x = 1 ^ 1;
+            Console.WriteLine(x.ToString());
             
             //string[][] pairs =
             //{
@@ -48,6 +49,19 @@ namespace DataStructuresAndAlgorithms
         }
         public static bool OneEditReplace(String s1, String s2)
         {
+            //cracking the coding interview 1.5
+            //need to check if two strings have only 1 edit in between them
+            //get longer string
+            if (s1.Length != s2.Length && s1.Length+1 == s2.Length)
+            {
+                string temp = s1;
+                s1 = s2;
+                s2 = temp;
+            }
+            else if(s1.Length != s2.Length && s1.Length!=s2.Length+1)
+            {
+                return false;
+            }
             bool foundDifference = false;
             for (int i = 0; i < s1.Length; i++)
             {
@@ -55,6 +69,7 @@ namespace DataStructuresAndAlgorithms
                 {
                     if (foundDifference)
                     {
+                        //if 2 differences are found, return false
                         return false;
                     }
 
@@ -74,6 +89,8 @@ namespace DataStructuresAndAlgorithms
 
             while(start <= end)
             {
+                //move pointers until each one is pointing at a character
+                //compare characters and keep moving
                 if(!('a'<= input[start] && input[start] <= 'z'))
                 {
                     start++;
@@ -120,6 +137,7 @@ namespace DataStructuresAndAlgorithms
 
         static int totalScore(string[] blocks, int n)
         {
+            //amazon interview question
             if (n == 0 || blocks.Length == 0)
                 return 0;
             int finalScore = 0;
@@ -167,14 +185,15 @@ namespace DataStructuresAndAlgorithms
 
         static string FullURL(string input)
         {
+            //microsoft interview question
             StringBuilder sb = new StringBuilder();
             input = input.Trim().ToLower();
             if(input.Length > 0)
             {
-                if (!input.StartsWith("http://"))
+                if (!input.StartsWith("http://") || !input.StartsWith("https://"))
                     sb.Append("http://");
                 sb.Append(input);
-                if (!input.EndsWith(".com"))
+                if (!input.EndsWith(".com") && !input.EndsWith(".net") && !input.EndsWith(".org"))
                     sb.Append(".com");
             }
             return sb.ToString();
@@ -211,11 +230,13 @@ namespace DataStructuresAndAlgorithms
                 int str1Val = (int)str1.ToCharArray()[i];
                 int str2Val = (int)str2.ToCharArray()[i];
 
+                //Binary XOR Operator copies the bit if it is set in one operand but not both.
+                //in permutation, the values should be same regardless of order, so XOR both strings should return 0
                 result = result ^ str1Val;
                 result = result ^ str2Val;
             }
 
-            return result == 0;
+            return result == 0;//if XOR both strings returned 0, then it was a valid permutation, so return true
         } // end permutation
     }
 
