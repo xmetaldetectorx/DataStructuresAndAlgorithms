@@ -11,9 +11,10 @@ namespace DataStructuresAndAlgorithms
     {
         static void Main(string[] args)
         {
-            int x = 1 ^ 1;
-            Console.WriteLine(x.ToString());
-            
+           
+            int[,] x = new int[3,2] { { 1, 1}, { 2, 2 }, { 4, 1 } };
+            int[,] y = new int[4,2] { { 1, 1 }, { 2, 2 }, { 3, 1 }, { 4, 1 } };
+            Console.WriteLine(DotProduct(x, y).ToString());
             //string[][] pairs =
             //{
             //    new string[]{"apple", "papel"},
@@ -47,6 +48,7 @@ namespace DataStructuresAndAlgorithms
             //Node LCA = myBST.FindLCA(myBST.root, node1, node2);
             //Console.Write("The LCA of node1 and node2 is " + LCA.data);
         }
+
         public static bool OneEditReplace(String s1, String s2)
         {
             //cracking the coding interview 1.5
@@ -238,6 +240,31 @@ namespace DataStructuresAndAlgorithms
 
             return result == 0;//if XOR both strings returned 0, then it was a valid permutation, so return true
         } // end permutation
+
+        static public int DotProduct(int[,] v1, int[,] v2)
+        {
+            int result = 0;
+            Dictionary<int, int> dV1 = new Dictionary<int, int>();
+            //add all elements from first vector to dictionary
+            for (int i = 0; i < v1.GetLength(0); i++)
+            {
+                dV1.Add(v1[i, 0], v1[i, 1]);
+            }
+            //start adding second 
+            for (int i = 0; i < v2.GetLength(0); i++)
+            {
+                if(dV1.ContainsKey(v2[i,0]))
+                {
+                    result += dV1[v2[i, 0]] * v2[i, 1];
+                }
+                else
+                { 
+                    dV1.Add(v2[i, 0], v2[i, 1]);
+                }
+            }
+
+            return result;
+        }
     }
 
     class Node
@@ -294,8 +321,6 @@ namespace DataStructuresAndAlgorithms
 
             return left != null ? left : right;
         }
-
-
     }
 
 }
