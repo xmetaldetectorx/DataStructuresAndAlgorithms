@@ -72,15 +72,15 @@ namespace DataStructuresAndAlgorithms
             }
         }
 
-        public bool Delete(T val)
+        public bool DeleteMiddle(Node<T> n)
         {
-            Node<T> curr = head;
-            //if(head.data == val)
-            //{
-            //    head = head.next;
-            //    return true;
-            //}
-            return false;
+            
+            if (n == null || n.next == null)
+                return false;
+            Node<T> next = n.next;
+            n.data = next.data;
+            n.next = next.next;
+            return true;
         }
 
         public bool InsertAfter(T val)

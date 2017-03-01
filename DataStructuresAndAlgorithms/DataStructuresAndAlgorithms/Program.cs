@@ -11,10 +11,11 @@ namespace DataStructuresAndAlgorithms
     {
         static void Main(string[] args)
         {
-           
-            int[,] x = new int[3,2] { { 1, 1}, { 2, 2 }, { 4, 1 } };
-            int[,] y = new int[4,2] { { 1, 1 }, { 2, 2 }, { 3, 1 }, { 4, 1 } };
-            Console.WriteLine(DotProduct(x, y).ToString());
+
+            Console.WriteLine(IsPermutation("goed", "doog"));
+            //int[,] x = new int[3,2] { { 1, 1}, { 2, 2 }, { 4, 1 } };
+            //int[,] y = new int[4,2] { { 1, 1 }, { 2, 2 }, { 3, 1 }, { 4, 1 } };
+            //Console.WriteLine(DotProduct(x, y).ToString());
             //string[][] pairs =
             //{
             //    new string[]{"apple", "papel"},
@@ -220,8 +221,34 @@ namespace DataStructuresAndAlgorithms
             return wordCount;
         }
 
-        static public bool IsPermutation(String str1, String str2)
+        static public bool IsPermutation(string str1, string str2)
         {
+            //Cracking the Coding Interview 1.2
+            //Check if strings are permutations of each other
+            if (str1 == null || str2 == null) return false;
+            if (str1.Length != str2.Length) return false;
+
+            int[] chars = new int[128];
+
+            foreach(char c in str1)
+            {
+                chars[c]++;
+            }
+
+            foreach(char c in str2)
+            {
+                chars[c]--;
+                if (chars[c] < 0)
+                    return false;
+            }
+
+            return true;
+        }
+        static public bool IsPermutationBITWISE(String str1, String str2)
+        {
+            //Cracking the Coding Interview 1.2
+            //Check if strings are permutations of each other
+
             if (str1 == null || str2 == null) return false;
             if (str1.Length != str2.Length) return false;
 
@@ -264,6 +291,26 @@ namespace DataStructuresAndAlgorithms
             }
 
             return result;
+        }
+
+        static public bool HasUniqueChars(string input)
+        {
+            //Cracking the Coding Interview 1.1
+            //Check if input has all unique characters
+            input = input.ToLower();
+            bool[] chars = new bool[128];
+            for(int i = 0; i < input.Length; i++)
+            {
+               
+                    //valid char
+                    if (chars[input[i]])
+                        return false;
+                    else
+                       chars[input[i]] = true;
+                
+            }
+
+            return true;
         }
     }
 
