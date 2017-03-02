@@ -12,42 +12,30 @@ namespace DataStructuresAndAlgorithms
         static void Main(string[] args)
         {
 
-            Console.WriteLine(IsPermutation("goed", "doog"));
-            //int[,] x = new int[3,2] { { 1, 1}, { 2, 2 }, { 4, 1 } };
-            //int[,] y = new int[4,2] { { 1, 1 }, { 2, 2 }, { 3, 1 }, { 4, 1 } };
-            //Console.WriteLine(DotProduct(x, y).ToString());
-            //string[][] pairs =
-            //{
-            //    new string[]{"apple", "papel"},
-            //    new string[]{"carrot", "tarroc"},
-            //    new string[]{"hello", "llloh"}
-            //};
+            BST myBST = new BST();
+            myBST.Add(15);
+            myBST.Add(10);
+            myBST.Add(20);
+            myBST.Add(11);
+            myBST.Add(9);
+            myBST.Add(16);
+            myBST.Add(21);
+            myBST.displayTree();
 
-            //foreach (var pair in pairs)
-            //{
-            //    var word1 = pair[0];
-            //    var word2 = pair[1];
-            //    var result1 = IsPermutation(word1, word2);
-            //    var result2 = IsPermutation(word1, word2);
-            //    Console.WriteLine("{0}, {1}: {2} / {3}", word1, word2, result1, result2);
-            //}
+            WriteLine("LCA of 16 and 21 is : " + myBST.FindLCA(myBST.root, 16, 21).data);
 
-            //int[] values = new int[] { 5,6,3,1,2,4};
-            //int node1 = 2, node2 = 4;
-            //int n = 6;
-            //BST myBST = new BST();
-            //Node n1, n2;
-            //n1 = n2 = null;
-            //for (int i = 0; i < n; i++)
-            //{
-            //    myBST.Add(myBST.root, values[i]);
-            //    if (values[i] == node1)
-            //        n1 = new Node(node1);
-            //    if (values[i] == node2)
-            //        n2 = new Node(node2);
-            //}
-            //Node LCA = myBST.FindLCA(myBST.root, node1, node2);
-            //Console.Write("The LCA of node1 and node2 is " + LCA.data);
+            WriteLine("Is the tree balanced? " + myBST.IsBalanced(myBST.root));
+
+            //myBST.InvertTree(myBST.root);
+            //myBST.displayTree();
+
+            WriteLine("The distance between 21 and 16 is : " + myBST.DistanceBetweenNodes(16, 21));
+
+            //myBST.PrintPath(myBST.root, 21);
+
+            myBST.root = myBST.SortedArrayToBST(new int[] { 1, 2, 3, 4, 5, 6 }, 0, 5);
+            myBST.displayTree();
+            
         }
 
         public static bool OneEditReplace(String s1, String s2)
@@ -55,13 +43,13 @@ namespace DataStructuresAndAlgorithms
             //cracking the coding interview 1.5
             //need to check if two strings have only 1 edit in between them
             //get longer string
-            if (s1.Length != s2.Length && s1.Length+1 == s2.Length)
+            if (s1.Length != s2.Length && s1.Length + 1 == s2.Length)
             {
                 string temp = s1;
                 s1 = s2;
                 s2 = temp;
             }
-            else if(s1.Length != s2.Length && s1.Length!=s2.Length+1)
+            else if (s1.Length != s2.Length && s1.Length != s2.Length + 1)
             {
                 return false;
             }
@@ -88,17 +76,17 @@ namespace DataStructuresAndAlgorithms
                 return false;
             string input = str.ToLower();
             int start = 0;
-            int end = input.Length-1;
+            int end = input.Length - 1;
 
-            while(start <= end)
+            while (start <= end)
             {
                 //move pointers until each one is pointing at a character
                 //compare characters and keep moving
-                if(!('a'<= input[start] && input[start] <= 'z'))
+                if (!('a' <= input[start] && input[start] <= 'z'))
                 {
                     start++;
                 }
-                else if(!('a' <= input[end] && input[end] <= 'z'))
+                else if (!('a' <= input[end] && input[end] <= 'z'))
                 {
                     end--;
                 }
@@ -114,29 +102,6 @@ namespace DataStructuresAndAlgorithms
             return true;
         }
 
-        public static int bstDistance(int[] values, int n, int node1, int node2)
-        {
-            // WRITE YOUR CODE HERE
-            BST myBST = new BST();
-            //Node n1, n2;
-            //n1 = n2 = null;
-            for (int i = 0; i < n; i++)
-            {
-                myBST.Add(myBST.root, values[i]);
-                //if (values[i] == node1)
-                //    n1 = new Node(node1);
-                //if (values[i] == node2)
-                //    n2 = new Node(node2);
-            }
-            //find lowest common ancestor of nodes
-            //if (n1 != null && n2 != null)
-            //{
-                Node LCA = myBST.FindLCA(myBST.root, node1, node2);
-                Console.Write("The LCA of node1 and node2 is " + LCA.data);
-                return LCA.data;
-            //}
-            return 0;
-        }
 
         static int totalScore(string[] blocks, int n)
         {
@@ -147,20 +112,20 @@ namespace DataStructuresAndAlgorithms
             int lastScore = 0;
             int secondToLastScore = 0;
             int curScore;
-            for(int i=0; i<n; i++)
+            for (int i = 0; i < n; i++)
             {
-                if(int.TryParse(blocks[i], out curScore))
+                if (int.TryParse(blocks[i], out curScore))
                 {
                     //current block is a number
                     finalScore += curScore;
                     if (i >= 1)
                         secondToLastScore = lastScore;
                     lastScore = curScore;
-                    
+
                 }
                 else
                 {
-                    switch(blocks[i])
+                    switch (blocks[i])
                     {
                         case "X":
                             curScore = lastScore * 2;
@@ -191,7 +156,7 @@ namespace DataStructuresAndAlgorithms
             //microsoft interview question
             StringBuilder sb = new StringBuilder();
             input = input.Trim().ToLower();
-            if(input.Length > 0)
+            if (input.Length > 0)
             {
                 if (!input.StartsWith("http://") || !input.StartsWith("https://"))
                     sb.Append("http://");
@@ -230,12 +195,12 @@ namespace DataStructuresAndAlgorithms
 
             int[] chars = new int[128];
 
-            foreach(char c in str1)
+            foreach (char c in str1)
             {
                 chars[c]++;
             }
 
-            foreach(char c in str2)
+            foreach (char c in str2)
             {
                 chars[c]--;
                 if (chars[c] < 0)
@@ -280,12 +245,12 @@ namespace DataStructuresAndAlgorithms
             //start adding second 
             for (int i = 0; i < v2.GetLength(0); i++)
             {
-                if(dV1.ContainsKey(v2[i,0]))
+                if (dV1.ContainsKey(v2[i, 0]))
                 {
                     result += dV1[v2[i, 0]] * v2[i, 1];
                 }
                 else
-                { 
+                {
                     dV1.Add(v2[i, 0], v2[i, 1]);
                 }
             }
@@ -299,22 +264,22 @@ namespace DataStructuresAndAlgorithms
             //Check if input has all unique characters
             input = input.ToLower();
             bool[] chars = new bool[128];
-            for(int i = 0; i < input.Length; i++)
+            for (int i = 0; i < input.Length; i++)
             {
-               
-                    //valid char
-                    if (chars[input[i]])
-                        return false;
-                    else
-                       chars[input[i]] = true;
-                
+
+                //valid char
+                if (chars[input[i]])
+                    return false;
+                else
+                    chars[input[i]] = true;
+
             }
 
             return true;
         }
     }
 
-    class Node
+    public class Node
     {
         public int data;
         public Node left;
@@ -328,7 +293,7 @@ namespace DataStructuresAndAlgorithms
         }
     }
 
-    class BST
+    public class BST
     {
         public Node root;
 
@@ -337,11 +302,24 @@ namespace DataStructuresAndAlgorithms
             root = null;
         }
 
-        public void Add(Node node, int val)
+        public void Add(int val)
         {
             if (root == null)
                 root = new Node(val);
-            else if (node == null)
+            else if (val >= root.data && root.right == null)
+                root.right = new Node(val);
+            else if (val <= root.data && root.left == null)
+                root.left = new Node(val);
+            else if (val >= root.data)
+                Add(root.right, val);
+            else if (val <= root.data)
+                Add(root.left, val);
+
+        }
+
+        void Add(Node node, int val)
+        {
+            if (node == null)
                 node = new Node(val);
             else if (val >= node.data && node.right == null)
                 node.right = new Node(val);
@@ -367,6 +345,147 @@ namespace DataStructuresAndAlgorithms
                 return null;
 
             return left != null ? left : right;
+        }
+
+        public Node InvertTree(Node root)
+        {
+            if (root == null)
+                return null;
+            Node left = InvertTree(root.left);
+            Node right = InvertTree(root.right);
+            root.left = right;
+            root.right = left;
+            return root;
+        }
+
+        public bool IsBalanced(Node root)
+        {
+            return checkHeight(root) != Int32.MinValue;
+        }
+
+        int checkHeight(Node n)
+        {
+            if (n == null)
+                return -1;
+            int leftHeight = checkHeight(n.left);
+            if (leftHeight == Int32.MinValue)
+                return Int32.MinValue;
+
+            int rightHeight = checkHeight(n.right);
+            if (rightHeight == Int32.MinValue)
+                return Int32.MinValue;
+
+            int heightDiff = leftHeight - rightHeight;
+
+            if (Math.Abs(heightDiff) > 1)
+                return Int32.MinValue;
+            else
+                return Math.Max(leftHeight, rightHeight) + 1;
+        }
+
+        public int DistanceBetweenNodes(int n1, int n2)
+        {
+
+            Node LCA = FindLCA(root, n1, n2);
+
+            if(LCA!=null)
+            {
+                int dlca = DistanceFromRoot(root, LCA.data)-1;
+                int d1 = DistanceFromRoot(root, n1)-1;
+                int d2 = DistanceFromRoot(root, n2)-1;
+
+                return d1 + d2 - (dlca*2);
+            }
+
+            return 0;
+        }
+
+        public Node SortedArrayToBST(int[] array, int start, int end)
+        {
+            if (start > end)
+                return null;
+            int mid = (start+end) / 2;
+            Node nroot = new Node(array[mid]);
+            nroot.left = SortedArrayToBST(array, start, mid - 1);
+            nroot.right = SortedArrayToBST(array, mid + 1, end);
+            return nroot;
+        }
+
+        //public int DistanceFromRoot(Node n1)
+        //{
+        //    if (root == n1 || n1==null)
+        //        return 0;
+
+        //}
+
+        public int DistanceFromRoot(Node root, int n1)
+        {
+            if (root != null)
+            {
+                int x = 0;
+                if ((root.data == n1) || (x = DistanceFromRoot(root.left, n1)) > 0
+                        || (x = DistanceFromRoot(root.right, n1)) > 0)
+                {
+                    return x + 1;
+
+                }
+                return 0;
+            }
+            return 0;
+        }
+
+        public Boolean PrintPath(Node root, int dest)
+        {
+            if (root == null) return false;
+            if (root.data == dest || PrintPath(root.left, dest) || PrintPath(root.right, dest))
+            {
+                Console.Write("  " + root.data);
+                //path.add(root.data);
+                return true;
+            }
+            return false;
+        }
+
+        public void displayTree()
+        {
+            Stack<Node> globalStack = new Stack<Node>();
+            globalStack.Push(root);
+            int emptyLeaf = 32;
+            bool isRowEmpty = false;
+            Console.WriteLine("****......................................................****");
+            while (isRowEmpty == false)
+            {
+
+                Stack<Node> localStack = new Stack<Node>();
+                isRowEmpty = true;
+                for (int j = 0; j < emptyLeaf; j++)
+                    Console.Write(' ');
+                while (globalStack.Count() > 0)
+                {
+                    Node temp = globalStack.Pop();
+                    if (temp != null)
+                    {
+                        Console.Write(temp.data);
+                        localStack.Push(temp.left);
+                        localStack.Push(temp.right);
+                        if (temp.left != null || temp.right != null)
+                            isRowEmpty = false;
+                    }
+                    else
+                    {
+                        Console.Write("--");
+                        localStack.Push(null);
+                        localStack.Push(null);
+                    }
+                    for (int j = 0; j < emptyLeaf * 2 - 2; j++)
+                        Console.Write(' ');
+                }
+                Console.WriteLine();
+                emptyLeaf /= 2;
+                while (localStack.Count() > 0)
+                    globalStack.Push(localStack.Pop());
+            }
+            Console.WriteLine("****......................................................****");
         }
     }
 
